@@ -12,5 +12,6 @@ router.get('/customers/:id', db.getCustomerById)
 router.put('/customers/:id', db.updateCustomer)
 router.get('/products', db.getProduct)
 router.get('/products/:id', db.getProductById)
+router.post('/products', db.createProduct)
 
 module.exports = router

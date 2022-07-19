@@ -83,6 +83,18 @@ const getProductById = (request, response) => {
     })
   }
 
+//post a new product
+const createProduct = (request, response) => {
+    const { company_id, name } = request.body
+      
+    pool.query(queries.createProduct, [company_id, name], (error, results) => {
+        if (error) {
+        throw error
+        }
+        response.status(201).send(`Product added with ID: ${results.rows[0].product_id}`)
+    })
+    }
+
 module.exports = {
     getCompany,
     getCompanyById,
@@ -90,5 +102,6 @@ module.exports = {
     getCustomerById,
     updateCustomer,
     getProduct,
-    getProductById
+    getProductById,
+    createProduct
 }
