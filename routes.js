@@ -8,5 +8,6 @@ const db = require('./controller')
 router.get('/companies', db.getCompany)
 router.get('/companies/:id', db.getCompanyById)
 router.get('/customers', db.getCustomer)
+router.get('/customers/:id', db.getCustomerById)
 
 module.exports = router

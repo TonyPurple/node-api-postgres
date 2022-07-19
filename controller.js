@@ -32,9 +32,22 @@ const getCustomer = (request, response) => {
       response.status(200).json(results.rows)
     })
   }
+  
+//get a single customer by ID
+const getCustomerById = (request, response) => {
+    const id = parseInt(request.params.id)
+  
+    pool.query(queries.getCustomerById, [id], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }
 
 module.exports = {
     getCompany,
     getCompanyById,
-    getCustomer
+    getCustomer,
+    getCustomerById
 }
