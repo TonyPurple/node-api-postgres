@@ -13,5 +13,6 @@ router.put('/customers/:id', db.updateCustomer)
 router.get('/products', db.getProduct)
 router.get('/products/:id', db.getProductById)
 router.post('/products', db.createProduct)
+router.get('/sales', db.getSales)
 
 module.exports = router

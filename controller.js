@@ -95,6 +95,16 @@ const createProduct = (request, response) => {
     })
     }
 
+//get all sales
+const getSales = (request, response) => {
+    pool.query(queries.getSales, (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }
+
 module.exports = {
     getCompany,
     getCompanyById,
@@ -103,5 +113,6 @@ module.exports = {
     updateCustomer,
     getProduct,
     getProductById,
-    createProduct
+    createProduct,
+    getSales
 }

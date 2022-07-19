@@ -9,6 +9,8 @@ const getProduct = 'SELECT * FROM product ORDER BY product_id ASC'
 const getProductById = 'SELECT * FROM product WHERE product_id = $1'
 const createProduct = 'INSERT INTO product (company_id, name) VALUES ($1, $2) RETURNING *'
 
+const getSales = 'SELECT * FROM sales ORDER BY sales_id ASC'
+
 module.exports = {
     getCompany,
     getCompanyById,
@@ -17,6 +19,7 @@ module.exports = {
     updateCustomer,
     getProduct,
     getProductById,
-    createProduct
+    createProduct,
+    getSales
 
 }
