@@ -11,4 +11,19 @@ const getCompany = (request, response) => {
     })
   }
 
-module.exports = {getCompany}
+// get a single company by ID
+const getCompanyById = (request, response) => {
+    const id = parseInt(request.params.id)
+  
+    pool.query(queries.getCompanyById, [id], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }
+
+module.exports = {
+    getCompany,
+    getCompanyById,
+}
