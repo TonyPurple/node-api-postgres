@@ -23,7 +23,18 @@ const getCompanyById = (request, response) => {
     })
   }
 
+//get all customers
+const getCustomer = (request, response) => {
+    pool.query(queries.getCustomer, (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }
+
 module.exports = {
     getCompany,
     getCompanyById,
+    getCustomer
 }
