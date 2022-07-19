@@ -117,6 +117,19 @@ const getSalesById = (request, response) => {
     })
     }
 
+//post a new sale
+const createSale = (request, response) => {
+    const { company_id, customer_id, product_id} = request.body
+          
+    pool.query(queries.createSale, [company_id, customer_id, product_id], (error, results) => {
+        if (error) {
+        throw error
+        }
+        response.status(201).send(`Sale added with ID: ${results.rows[0].sales_id}`)
+    })
+    }
+
+
 module.exports = {
     getCompany,
     getCompanyById,
@@ -127,5 +140,6 @@ module.exports = {
     getProductById,
     createProduct,
     getSales,
-    getSalesById
+    getSalesById,
+    createSale
 }
