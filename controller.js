@@ -105,6 +105,18 @@ const getSales = (request, response) => {
     })
   }
 
+//get a single sale by id
+const getSalesById = (request, response) => {
+    const id = parseInt(request.params.id)
+      
+    pool.query(queries.getSalesById, [id], (error, results) => {
+        if (error) {
+        throw error
+        }
+        response.status(200).json(results.rows)
+    })
+    }
+
 module.exports = {
     getCompany,
     getCompanyById,
@@ -114,5 +126,6 @@ module.exports = {
     getProduct,
     getProductById,
     createProduct,
-    getSales
+    getSales,
+    getSalesById
 }

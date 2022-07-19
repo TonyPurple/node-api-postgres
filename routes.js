@@ -14,5 +14,6 @@ router.get('/products', db.getProduct)
 router.get('/products/:id', db.getProductById)
 router.post('/products', db.createProduct)
 router.get('/sales', db.getSales)
+router.get('/sales/:id', db.getSalesById)
 
 module.exports = router
