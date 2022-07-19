@@ -45,9 +45,26 @@ const getCustomerById = (request, response) => {
     })
   }
 
+//update data in existing customer
+const updateCustomer = (request, response) => {
+    const id = parseInt(request.params.id)
+    const { name } = request.body
+  
+    pool.query(
+      queries.updateCustomer, [name, id],
+      (error, results) => {
+        if (error) {
+          throw error
+        }
+        response.status(200).send(`Customer modified with ID: ${id}`)
+      }
+    )
+  }
+
 module.exports = {
     getCompany,
     getCompanyById,
     getCustomer,
-    getCustomerById
+    getCustomerById,
+    updateCustomer
 }
