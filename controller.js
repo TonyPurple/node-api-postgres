@@ -9,7 +9,7 @@ const getCompany = (request, response) => {
       }
       response.status(200).json(results.rows)
     })
-  }
+}
 
 // get a single company by ID
 const getCompanyById = (request, response) => {
@@ -21,7 +21,7 @@ const getCompanyById = (request, response) => {
       }
       response.status(200).json(results.rows)
     })
-  }
+}
 
 //get all customers
 const getCustomer = (request, response) => {
@@ -31,7 +31,7 @@ const getCustomer = (request, response) => {
       }
       response.status(200).json(results.rows)
     })
-  }
+}
   
 //get a single customer by ID
 const getCustomerById = (request, response) => {
@@ -43,7 +43,7 @@ const getCustomerById = (request, response) => {
       }
       response.status(200).json(results.rows)
     })
-  }
+}
 
 //update data in existing customer
 const updateCustomer = (request, response) => {
@@ -59,7 +59,7 @@ const updateCustomer = (request, response) => {
         response.status(200).send(`Customer modified with ID: ${id}`)
       }
     )
-  }
+}
 
   //get all products
 const getProduct = (request, response) => {
@@ -69,7 +69,7 @@ const getProduct = (request, response) => {
       }
       response.status(200).json(results.rows)
     })
-  }
+}
  
 //get a single product by id
 const getProductById = (request, response) => {
@@ -81,7 +81,7 @@ const getProductById = (request, response) => {
       }
       response.status(200).json(results.rows)
     })
-  }
+}
 
 //post a new product
 const createProduct = (request, response) => {
@@ -89,11 +89,11 @@ const createProduct = (request, response) => {
       
     pool.query(queries.createProduct, [company_id, name], (error, results) => {
         if (error) {
-        throw error
+            throw error
         }
         response.status(201).send(`Product added with ID: ${results.rows[0].product_id}`)
     })
-    }
+}
 
 //get all sales
 const getSales = (request, response) => {
@@ -103,7 +103,7 @@ const getSales = (request, response) => {
       }
       response.status(200).json(results.rows)
     })
-  }
+}
 
 //get a single sale by id
 const getSalesById = (request, response) => {
@@ -111,11 +111,11 @@ const getSalesById = (request, response) => {
       
     pool.query(queries.getSalesById, [id], (error, results) => {
         if (error) {
-        throw error
+            throw error
         }
         response.status(200).json(results.rows)
     })
-    }
+}
 
 //post a new sale
 const createSale = (request, response) => {
@@ -123,12 +123,23 @@ const createSale = (request, response) => {
           
     pool.query(queries.createSale, [company_id, customer_id, product_id], (error, results) => {
         if (error) {
-        throw error
+            throw error
         }
         response.status(201).send(`Sale added with ID: ${results.rows[0].sales_id}`)
     })
-    }
+}
 
+//delete a sale
+const deleteSale = (request, response) => {
+    const id = parseInt(request.params.id)
+              
+    pool.query(queries.deleteSale, [id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        response.status(200).send(`Sale deleted with ID: ${id}`)
+    })
+}
 
 module.exports = {
     getCompany,
@@ -141,5 +152,6 @@ module.exports = {
     createProduct,
     getSales,
     getSalesById,
-    createSale
+    createSale,
+    deleteSale
 }
