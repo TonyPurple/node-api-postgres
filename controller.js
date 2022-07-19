@@ -61,10 +61,21 @@ const updateCustomer = (request, response) => {
     )
   }
 
+  //get all products
+const getProduct = (request, response) => {
+    pool.query(queries.getProduct, (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }
+
 module.exports = {
     getCompany,
     getCompanyById,
     getCustomer,
     getCustomerById,
-    updateCustomer
+    updateCustomer,
+    getProduct
 }
