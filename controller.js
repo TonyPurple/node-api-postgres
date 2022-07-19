@@ -70,6 +70,18 @@ const getProduct = (request, response) => {
       response.status(200).json(results.rows)
     })
   }
+ 
+//get a single product by id
+const getProductById = (request, response) => {
+    const id = parseInt(request.params.id)
+  
+    pool.query(queries.getProductById, [id], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }
 
 module.exports = {
     getCompany,
@@ -77,5 +89,6 @@ module.exports = {
     getCustomer,
     getCustomerById,
     updateCustomer,
-    getProduct
+    getProduct,
+    getProductById
 }

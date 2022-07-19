@@ -6,6 +6,7 @@ const getCustomerById = 'SELECT * FROM customer WHERE customer_id = $1'
 const updateCustomer = 'UPDATE customer SET name = $1 WHERE customer_id = $2'
 
 const getProduct = 'SELECT * FROM product ORDER BY product_id ASC'
+const getProductById = 'SELECT * FROM product WHERE product_id = $1'
 
 module.exports = {
     getCompany,
@@ -13,6 +14,7 @@ module.exports = {
     getCustomer,
     getCustomerById,
     updateCustomer,
-    getProduct
+    getProduct,
+    getProductById
 
 }
